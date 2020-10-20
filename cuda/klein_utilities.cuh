@@ -8,14 +8,6 @@
 #include "device_launch_parameters.h"
 //#include "device_functions.h"
 
-#include <thrust/host_vector.h>
-#include <thrust/device_vector.h>
-#include <thrust/sort.h>
-#include <thrust/copy.h>
-#include <thrust/sequence.h>
-#include <thrust/remove.h>
-#include <thrust/generate.h>
-#include <thrust/detail/type_traits.h>
 
 #include <math.h>
 #include <algorithm>
@@ -27,7 +19,6 @@
 
 // CUDA helper functions
 #include "helper_cuda.h"         // helper functions for CUDA error check
-//#include <helper_cuda_gl.h>      // helper functions for CUDA/GL interop
 #include "cutils_math.h"
 #include "cutils_matrix.h"
 
@@ -43,7 +34,6 @@
 // #define EPSILON 0.1
 #define ALPHA 0.8 
 
-//#define PI 3.1415926535897932384626433832795
 
 #define MAX_DEPTH 100.0
 
@@ -90,7 +80,7 @@ struct kln_line
 
 // If integrating this library with other code, remember that the point layout
 // here has the homogeneous component in p3[0] and not p3[3]. The swizzle to
-// get the vec3 Cartesian representation is p3.yzw
+// get the vec3 Cartesian representation is make_float3(p3.y,p3.z,p3.w)
 struct kln_point
 {
     float4 p3;
